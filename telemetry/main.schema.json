@@ -490,87 +490,7 @@
       "type": "object"
     },
     "payload": {
-      "type": "object",
-      "properties": {
-        "addonDetails": {
-          "type": "object",
-          "properties": {}
-        },
-        "addonHistograms": {
-          "type": "object",
-          "properties": {}
-        },
-        "childPayloads": {
-          "type": "array"
-        },
-        "chromeHangs": {
-          "type": "object",
-          "properties": {}
-        },
-        "fileIOReports": {
-          "type": "object",
-          "properties": {}
-        },
-        "histograms": {
-          "type": "object",
-          "additionalProperties": {
-            "$ref": "#/definitions/histogram"
-          }
-        },
-        "info": {
-          "type": "object",
-          "properties": {}
-        },
-        "keyedHistograms": {
-          "type": "object",
-          "additionalProperties": {
-            "additionalProperties": {
-              "$ref": "#/definitions/histogram"
-            }
-          }
-        },
-        "lateWrites": {
-          "type": "object",
-          "properties": {}
-        },
-        "log": {
-          "type": [
-            "array",
-            "object"
-          ]
-        },
-        "simpleMeasurements": {
-          "type": "object",
-          "properties": {}
-        },
-        "slowSQL": {
-          "type": "object",
-          "properties": {}
-        },
-        "slowSQLStartup": {
-          "type": "object",
-          "properties": {}
-        },
-        "threadHangStats": {
-          "type": [
-            "array",
-            "object"
-          ]
-        },
-        "UIMeasurements": {
-          "type": [
-            "array",
-            "object"
-          ]
-        },
-        "ver": {
-          "type": "integer"
-        },
-        "webrtc": {
-          "type": "object",
-          "properties": {}
-        }
-      }
+      "$ref": "#/definitions/payload"
     },
     "type": {
       "type": "string",
@@ -697,6 +617,95 @@
         }
       }
     },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "addonDetails": {
+          "type": "object",
+          "properties": {}
+        },
+        "addonHistograms": {
+          "type": "object",
+          "properties": {}
+        },
+        "childPayloads": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/payload"
+          }
+        },
+        "chromeHangs": {
+          "type": "object",
+          "properties": {}
+        },
+        "fileIOReports": {
+          "type": "object",
+          "properties": {}
+        },
+        "histograms": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/histogram"
+          }
+        },
+        "info": {
+          "type": "object",
+          "properties": {}
+        },
+        "keyedHistograms": {
+          "type": "object",
+          "additionalProperties": {
+            "additionalProperties": {
+              "$ref": "#/definitions/histogram"
+            }
+          }
+        },
+        "lateWrites": {
+          "type": "object",
+          "properties": {}
+        },
+        "log": {
+          "type": [
+            "array",
+            "object"
+          ]
+        },
+        "simpleMeasurements": {
+          "type": "object",
+          "properties": {}
+        },
+        "slowSQL": {
+          "type": "object",
+          "properties": {}
+        },
+        "slowSQLStartup": {
+          "type": "object",
+          "properties": {}
+        },
+        "threadHangStats": {
+          "type": [
+            "array",
+            "object"
+          ],
+          "items": {
+            "$ref": "#/definitions/threadHang"
+          }
+        },
+        "UIMeasurements": {
+          "type": [
+            "array",
+            "object"
+          ]
+        },
+        "ver": {
+          "type": "integer"
+        },
+        "webrtc": {
+          "type": "object",
+          "properties": {}
+        }
+      }
+    },
     "plugin": {
       "type": "object",
       "properties": {
@@ -726,6 +735,63 @@
         },
         "updateDay": {
           "type": "integer"
+        }
+      }
+    },
+    "threadHang": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "activity": {
+          "#ref": "#/definitions/histogram"
+        },
+        "hangs": {
+          "type": "array",
+          "items": {
+            "#ref": "#/definitions/hang"
+          }
+        }
+      }
+    },
+    "hang": {
+      "type": "object",
+      "properties": {
+        "stack": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "nativeStack": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "histogram": {
+          "#ref": "#/definitions/histogram"
+        },
+        "annotations": {
+          "type": "array",
+          "items": {
+            "#ref": "#/definitions/threadHangAnnotation"
+          }
+        }
+      }
+    },
+    "threadHangAnnotation": {
+      "type": "object",
+      "properties": {
+        "pluginName": {
+          "type": "string"
+        },
+        "pluginVersion": {
+          "type": "string"
+        },
+        "pluginIsWhitelistedForShumway": {
+          "type": "boolean"
         }
       }
     }
