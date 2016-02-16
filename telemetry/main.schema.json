@@ -683,7 +683,15 @@
           "type": [
             "array",
             "object"
-          ]
+          ],
+          "items": {
+            "type": "array",
+            "items": [
+              {"type": "string"},
+              {"type": "integer"}
+            ],
+            "additionalItems": true
+          }
         },
         "simpleMeasurements": {
           "type": "object",
@@ -730,7 +738,20 @@
         },
         "webrtc": {
           "type": "object",
-          "properties": {}
+          "properties": {
+            "IceCandidatesStats": {
+              "type": "object",
+              "properties": {
+                "webrtc": {
+                  "type": "object"
+                },
+                "loop": {
+                  "type": "object"
+                }
+              },
+              "additionalProperties": false
+            }
+          }
         }
       }
     },
