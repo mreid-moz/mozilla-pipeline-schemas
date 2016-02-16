@@ -640,7 +640,22 @@
         },
         "fileIOReports": {
           "type": "object",
-          "properties": {}
+          "properties": {
+            "xre": {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "maxItems": 6
+            },
+            "profile": {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "maxItems": 6
+            }
+          }
         },
         "histograms": {
           "type": "object",
@@ -676,7 +691,20 @@
         },
         "slowSQL": {
           "type": "object",
-          "properties": {}
+          "properties": {
+            "mainThread": {
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "#/definitions/slowSQL"
+              }
+            },
+            "otherThreads": {
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "#/definitions/slowSQL"
+              }
+            }
+          }
         },
         "slowSQLStartup": {
           "type": "object",
@@ -737,6 +765,14 @@
           "type": "integer"
         }
       }
+    },
+    "slowSQL": {
+      "type": "array",
+      "additionalItems": {
+        "type": "integer"
+      },
+      "minItems": 2,
+      "maxItems": 2
     },
     "threadHang": {
       "type": "object",
