@@ -3,125 +3,102 @@
   "id": "http://people.mozilla.org/~mreid/pipeline/schemas/main.4.schema.json",
   "type": "object",
   "name": "main",
-  "properties": {
-    "application": { "$ref": "common.4.schema.json#/definitions/application" },
-    "clientId": {
-      "type": "string",
-      "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
-    },
-    "creationDate": {
-      "type": "string",
-      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}\\.[0-9]{3}Z$"
-    },
-    "environment": { "$ref": "common.4.schema.json#/definitions/environment" },
-    "id": {
-      "type": "string",
-      "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
-    },
-    "meta": {
-      "type": "object"
-    },
-    "payload": {
-      "type": "object",
+  "allOf": [
+    { "$ref": "common.4.schema.json#/definitions/common" },
+    {
       "properties": {
-        "addonDetails": {
+        "payload": {
           "type": "object",
-          "properties": {}
-        },
-        "addonHistograms": {
-          "type": "object",
-          "properties": {}
-        },
-        "childPayloads": {
-          "type": "array"
-        },
-        "chromeHangs": {
-          "type": "object",
-          "properties": {}
-        },
-        "fileIOReports": {
-          "type": ["object", "null"],
-          "properties": {}
-        },
-        "histograms": {
-          "type": "object",
-          "additionalProperties": {
-            "$ref": "#/definitions/histogram"
-          }
-        },
-        "info": {
-          "type": "object",
-          "properties": {}
-        },
-        "keyedHistograms": {
-          "type": "object",
-          "additionalProperties": {
-            "additionalProperties": {
-              "$ref": "#/definitions/histogram"
+          "properties": {
+            "addonDetails": {
+              "type": "object",
+              "properties": {}
+            },
+            "addonHistograms": {
+              "type": "object",
+              "properties": {}
+            },
+            "childPayloads": {
+              "type": "array"
+            },
+            "chromeHangs": {
+              "type": "object",
+              "properties": {}
+            },
+            "fileIOReports": {
+              "type": ["object", "null"],
+              "properties": {}
+            },
+            "histograms": {
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "#/definitions/histogram"
+              }
+            },
+            "info": {
+              "type": "object",
+              "properties": {}
+            },
+            "keyedHistograms": {
+              "type": "object",
+              "additionalProperties": {
+                "additionalProperties": {
+                  "$ref": "#/definitions/histogram"
+                }
+              }
+            },
+            "lateWrites": {
+              "type": "object",
+              "properties": {}
+            },
+            "log": {
+              "type": [
+                "array",
+                "object"
+              ]
+            },
+            "simpleMeasurements": {
+              "type": "object",
+              "properties": {}
+            },
+            "slowSQL": {
+              "type": "object",
+              "properties": {}
+            },
+            "slowSQLStartup": {
+              "type": "object",
+              "properties": {}
+            },
+            "threadHangStats": {
+              "type": [
+                "array",
+                "object"
+              ]
+            },
+            "UIMeasurements": {
+              "type": [
+                "array",
+                "object"
+              ]
+            },
+            "ver": {
+              "type": "integer"
+            },
+            "webrtc": {
+              "type": "object",
+              "properties": {}
             }
           }
         },
-        "lateWrites": {
-          "type": "object",
-          "properties": {}
-        },
-        "log": {
-          "type": [
-            "array",
-            "object"
-          ]
-        },
-        "simpleMeasurements": {
-          "type": "object",
-          "properties": {}
-        },
-        "slowSQL": {
-          "type": "object",
-          "properties": {}
-        },
-        "slowSQLStartup": {
-          "type": "object",
-          "properties": {}
-        },
-        "threadHangStats": {
-          "type": [
-            "array",
-            "object"
-          ]
-        },
-        "UIMeasurements": {
-          "type": [
-            "array",
-            "object"
-          ]
-        },
-        "ver": {
-          "type": "integer"
-        },
-        "webrtc": {
-          "type": "object",
-          "properties": {}
+        "type": {
+          "type": "string",
+          "enum": [ "main" ]
         }
       }
-    },
-    "type": {
-      "type": "string",
-      "enum": [
-        "main",
-        "saved-session"
-      ]
-    },
-    "version": {
-      "type": "number",
-      "minimum": 4,
-      "maximum": 4
     }
-  },
+  ],
   "required": [
-    "application",
-    "creationDate",
-    "id",
-    "version"
+    "payload"
   ],
   "definitions": {
     "histogram": {

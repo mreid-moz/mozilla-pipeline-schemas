@@ -1,6 +1,41 @@
 {
   "id": "http://people.mozilla.org/~mreid/pipeline/schemas/common.4.schema.json",
   "definitions": {
+    "common": {
+      "type": "object",
+      "properties": {
+        "application": { "$ref": "#/definitions/application" },
+        "clientId": {
+          "type": "string",
+          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+        },
+        "creationDate": {
+          "type": "string",
+          "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}\\.[0-9]{3}Z$"
+        },
+        "environment": { "$ref": "#/definitions/environment" },
+        "id": {
+          "type": "string",
+          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+        },
+        "type": {
+          "type": "string",
+          "minLength": 1
+        },
+        "version": {
+          "type": "number",
+          "minimum": 4,
+          "maximum": 4
+        }
+      },
+      "required": [
+        "application",
+        "creationDate",
+        "id",
+        "type",
+        "version"
+      ]
+    },
     "application": {
       "type": "object",
       "properties": {

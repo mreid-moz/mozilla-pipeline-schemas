@@ -19,7 +19,9 @@ class Test_validate(unittest.TestCase):
         # for specific JSON-Schema features
         self.failUnless("$schema" in main_schema)
         # Sanity
-        self.failUnless("properties" in main_schema)
+        self.failUnless("properties" in main_schema or
+                        "allOf" in main_schema or
+                        "anyOf" in main_schema)
         self.failUnless("required" in main_schema)
         self.assertRaises(ValidationError, validate, {}, main_schema)
         validate(self.ping, main_schema)
