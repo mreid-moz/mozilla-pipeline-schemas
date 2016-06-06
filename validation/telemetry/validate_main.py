@@ -2,8 +2,10 @@ import json, os, unittest
 from jsonschema import validate, ValidationError
 
 LOCAL = os.path.dirname(__file__)
-SAMPLE_PING_PATH = os.path.join(LOCAL, 'sample_v4_ping.json')
-MAIN_SCHEMA_PATH = os.path.join(LOCAL, '../../telemetry/main.schema.json')
+MAIN_SCHEMA_VERSION = 4
+SAMPLE_PING_PATH = os.path.join(LOCAL, 'sample_v{}_ping.json'.format(MAIN_SCHEMA_VERSION))
+MAIN_SCHEMA_FILENAME = 'main.{}.schema.json'.format(MAIN_SCHEMA_VERSION)
+MAIN_SCHEMA_PATH = os.path.join(LOCAL, '../../telemetry', MAIN_SCHEMA_FILENAME)
 
 
 class Test_validate(unittest.TestCase):
