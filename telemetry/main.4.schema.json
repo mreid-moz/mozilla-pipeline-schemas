@@ -7,6 +7,9 @@
     { "$ref": "common.4.schema.json#/definitions/common" },
     {
       "properties": {
+        "meta": {
+          "type": "object"
+        },
         "payload": {
           "type": "object",
           "properties": {
@@ -57,6 +60,28 @@
                 "object"
               ]
             },
+            "processes": {
+              "type": "object",
+              "properties": {
+                "parent": {
+                  "type": "object",
+                  "properties": {
+                    "scalars": {
+                      "type": "object",
+                      "additionalProperties": {
+                        "$ref": "#/definitions/scalar"
+                      }
+                    }
+                  },
+                  "required": [
+                    "scalars"
+                  ]
+                }
+              },
+              "required": [
+                "parent"
+              ]
+            },
             "simpleMeasurements": {
               "type": "object",
               "properties": {}
@@ -92,7 +117,10 @@
         },
         "type": {
           "type": "string",
-          "enum": [ "main" ]
+          "enum": [
+            "main",
+            "saved-session"
+          ]
         }
       }
     }
@@ -140,6 +168,9 @@
         }
       },
       "additionalProperties": false
+    },
+    "scalar": {
+      "type": ["integer", "string"]
     }
   }
 }
