@@ -1,5 +1,5 @@
 {
-  "id": "http://people.mozilla.org/~mreid/pipeline/schemas/common.4.schema.json",
+  "id": "https://raw.githubusercontent.com/mreid-moz/mozilla-pipeline-schemas/common/telemetry/common.4.schema.json",
   "definitions": {
     "common": {
       "type": "object",

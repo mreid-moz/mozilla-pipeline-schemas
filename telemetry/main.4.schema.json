@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "id": "http://people.mozilla.org/~mreid/pipeline/schemas/main.4.schema.json",
+  "id": "https://raw.githubusercontent.com/mreid-moz/mozilla-pipeline-schemas/common/telemetry/main.4.schema.json",
   "type": "object",
   "name": "main",
   "allOf": [
