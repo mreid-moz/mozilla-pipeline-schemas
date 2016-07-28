@@ -529,15 +529,7 @@
         "settings",
         "system"
       ]
-    }
-  },
-  "required": [
-    "application",
-    "creationDate",
-    "id",
-    "version"
-  ],
-  "definitions": {
+    },
     "addon": {
       "type": "object",
       "properties": {
@@ -780,5 +772,11 @@
         }
       }
     }
-  }
+  },
+  "required": [
+    "application",
+    "creationDate",
+    "id",
+    "version"
+  ]
 }
