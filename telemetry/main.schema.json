@@ -69,7 +69,7 @@
                 "$ref": "#/definitions/addon"
               }
             },
-            "active Experiment": {
+            "activeExperiment": {
               "type": "object",
               "properties": {
                 "id": {
@@ -494,6 +494,15 @@
                 "servicePackMinor": {
                   "type": "number"
                 },
+                "windowsBuildNumber": {
+                  "type": "number"
+                },
+                "windowsUBR": {
+                  "type": ["number", "null"]
+                },
+                "installYear": {
+                  "type": "number"
+                },
                 "locale": {
                   "type": "string"
                 }
@@ -503,6 +512,7 @@
         }
       },
       "required": [
+        "addons",
         "build",
         "partner",
         "profile",
@@ -550,19 +560,8 @@
           "properties": {
             "parent": {
               "type": "object",
-              "properties": {
-                "scalars": {
-                  "type": "object",
-                  "additionalProperties": {
-                    "$ref": "#/definitions/scalar"
-                  }
-                },
-                "keyedScalars": {
-                  "type": "object",
-                  "additionalProperties": {
-                    "$ref": "#/definitions/keyedScalar"
-                  }
-                }
+              "additionalProperties": {
+                "$ref": "#/definitions/processData"
               },
               "required": [
                 "scalars"
@@ -570,40 +569,14 @@
             },
             "content": {
               "type": "object",
-              "properties": {
-                "histograms": {
-                  "type": "object",
-                  "additionalProperties": {
-                    "$ref": "#/definitions/histogram"
-                  }
-                },
-                "keyedHistograms": {
-                  "type": "object",
-                  "additionalProperties": {
-                    "additionalProperties": {
-                      "$ref": "#/definitions/histogram"
-                    }
-                  }
-                }
+              "additionalProperties": {
+                "$ref": "#/definitions/processData"
               }
             },
             "gpu": {
               "type": "object",
-              "properties": {
-                "histograms": {
-                  "type": "object",
-                  "additionalProperties": {
-                    "$ref": "#/definitions/histogram"
-                  }
-                },
-                "keyedHistograms": {
-                  "type": "object",
-                  "additionalProperties": {
-                    "additionalProperties": {
-                      "$ref": "#/definitions/histogram"
-                    }
-                  }
-                }
+              "additionalProperties": {
+                "$ref": "#/definitions/processData"
               }
             }
           },
@@ -683,6 +656,7 @@
     "application",
     "creationDate",
     "id",
+    "type",
     "version"
   ],
   "definitions": {
@@ -732,6 +706,9 @@
         },
         "signedState": {
           "type": "integer"
+        },
+        "isSystem": {
+          "type": "boolean"
         }
       }
     },
@@ -795,6 +772,14 @@
           "type": ["object", "null"],
           "items": {
             "$ref": "#/definitions/feature"
+          }
+        },
+        "gpuProcess": {
+          "type": ["object", "null"],
+          "properties": {
+            "status": {
+              "type": ["string", "null"]
+            }
           }
         }
       }
@@ -866,6 +851,48 @@
       "type": "object",
       "additionalProperties": {
         "$ref": "#/definitions/scalar"
+      }
+    },
+    "event": {
+      "type": "array"
+    },
+    "processData": {
+      "properties": {
+        "scalars": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/scalar"
+          }
+        },
+        "keyedScalars": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/keyedScalar"
+          }
+        },
+        "histograms": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/histogram"
+          }
+        },
+        "keyedHistograms": {
+          "type": "object",
+          "additionalProperties": {
+            "additionalProperties": {
+              "$ref": "#/definitions/histogram"
+            }
+          }
+        },
+        "events": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/event"
+          }
+        },
+        "gc": {
+          "type": "object"
+        }
       }
     },
     "gmPlugin": {
