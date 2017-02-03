@@ -559,26 +559,13 @@
           "type": "object",
           "properties": {
             "parent": {
-              "type": "object",
-              "additionalProperties": {
-                "$ref": "#/definitions/processData"
-              },
-              "required": [
-                "scalars"
+              "allOf": [
+                {"$ref": "#/definitions/processData"},
+                {"required": ["scalars"]}
               ]
             },
-            "content": {
-              "type": "object",
-              "additionalProperties": {
-                "$ref": "#/definitions/processData"
-              }
-            },
-            "gpu": {
-              "type": "object",
-              "additionalProperties": {
-                "$ref": "#/definitions/processData"
-              }
-            }
+            "content": {"$ref": "#/definitions/processData"},
+            "gpu": {"$ref": "#/definitions/processData"}
           },
           "required": [
             "parent"
@@ -857,6 +844,7 @@
       "type": "array"
     },
     "processData": {
+      "type": "object",
       "properties": {
         "scalars": {
           "type": "object",
