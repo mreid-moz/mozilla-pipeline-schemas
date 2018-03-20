@@ -1027,7 +1027,7 @@
                   "properties": {
                     "random": {
                       "items": {
-                        "oneOf": [
+                        "anyOf": [
                           {
                             "additionalProperties": {
                               "type": [
@@ -1115,7 +1115,7 @@
                     },
                     "worst": {
                       "items": {
-                        "oneOf": [
+                        "anyOf": [
                           {
                             "additionalProperties": {
                               "type": [
@@ -1366,7 +1366,7 @@
                   "properties": {
                     "random": {
                       "items": {
-                        "oneOf": [
+                        "anyOf": [
                           {
                             "additionalProperties": {
                               "type": [
@@ -1454,7 +1454,7 @@
                     },
                     "worst": {
                       "items": {
-                        "oneOf": [
+                        "anyOf": [
                           {
                             "additionalProperties": {
                               "type": [
@@ -1705,7 +1705,7 @@
                   "properties": {
                     "random": {
                       "items": {
-                        "oneOf": [
+                        "anyOf": [
                           {
                             "additionalProperties": {
                               "type": [
@@ -1793,7 +1793,7 @@
                     },
                     "worst": {
                       "items": {
-                        "oneOf": [
+                        "anyOf": [
                           {
                             "additionalProperties": {
                               "type": [
